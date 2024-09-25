@@ -6,7 +6,7 @@ import '../styles/login_page.css';
 const Footer = () => {
     return (
         <footer className="footer">
-        <p>Everyone Deserves to Learn</p>
+        <p>@copyright aurafocus2024</p>
       </footer>
     )
 }
