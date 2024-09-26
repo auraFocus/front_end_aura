@@ -1,21 +1,14 @@
 import React from "react";
+import Sidebar from "../components/sidebar";
 
 
 const Dashboard = () => {
 
 
 
-
-
-
-
-
-
-
-
     return (
         <div>
-                <h1>Você está no dashboard</h1>
+              <Sidebar/>
         </div>
     )
 
