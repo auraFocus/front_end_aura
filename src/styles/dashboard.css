@@ -1,0 +1,28 @@
+/* CSS Geral para alinhar os textos à direita */
+.school_card {
+    display: flex;
+    justify-content: flex-end; /* Alinha o conteúdo ao final (direita) */
+    margin-right: 20px; /* Espaçamento da borda direita */
+  }
+  
+  .text_school_card {
+    text-align: right; /* Alinha os textos internamente à direita */
+  }
+  
+  .school-card {
+    display: flex;
+    justify-content: flex-end; /* Alinha o card inteiro à direita */
+    padding: 10px;
+    margin-bottom: 20px; /* Exemplo de espaçamento entre cards */
+  }
+  
+  /* CSS Geral para alinhar os textos à direita */
+.school_card {
+    text-align: right;
+    padding-right: 20px;
+  }
+  
+
+.dashboard_container{
+    display: flexdashboard_container;
+}
