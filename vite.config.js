@@ -17,6 +17,21 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/aura/students': {
+        target: 'http://18.118.184.194:3000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/aura/teachers': {
+        target: 'http://18.118.184.194:3000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/aura/parents': {
+        target: 'http://18.118.184.194:3000',
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 })

@@ -26,3 +26,55 @@
 .dashboard_container{
     display: flexdashboard_container;
 }
+
+.container_card_overview_users{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.card_dashboard_students{
+    display: block;
+    justify-content: center;
+    text-align: center;
+    width: 20%;
+    background: rgba( 39, 24, 62, 0.3 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 6.5px );
+-webkit-backdrop-filter: blur( 6.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.icon_user {
+    width: 100px;
+    height: 100px;
+    color:#27183E;
+
+}
+
+.card_dashboard_teachers{
+    display: block;
+    justify-content: center;
+    text-align: center;
+    width: 20%;
+    background: rgba( 39, 24, 62, 0.3 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 6.5px );
+-webkit-backdrop-filter: blur( 6.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.card_dashboard_parents{
+    display: block;
+    justify-content: center;
+    text-align: center;
+    width: 20%;
+    background: rgba( 39, 24, 62, 0.3 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 6.5px );
+-webkit-backdrop-filter: blur( 6.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
