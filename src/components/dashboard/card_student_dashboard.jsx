@@ -5,7 +5,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import "../../styles/dashboard.css"
 
 
-export default function CardTeachersDashboard(){
+export default function CardStudenDashboard(){
     const [students,SetStudents] = useState([]);
     const [error, setError] = useState(null);
 

@@ -14,14 +14,16 @@ const Dashboard = () => {
         <div className="dashboard_container">   
 
               <Sidebar/>
-              <div className="header_information_dashboard">  
+              <div className="header_information_dashboard">
+             
               <School/>
+              </div>  
                 <div className="container_card_overview_users">
                 <CardStudenDashboard/>
                 <CardTeachersDashboard/>
                 <CardparentsDashboard/>
                 </div>
-              </div>
+              
         </div>
     )
 

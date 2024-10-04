@@ -1,0 +1,145 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .action-button {
+    width: 10%;
+  position: relative;
+  cursor: pointer;
+  padding: 5px 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  color: #27183E;
+  }
+  
+  
+  .modal-actions {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    gap: 10px; 
+}
+
+  .action-btn {
+    width: 50%;
+    height: 100%;
+    margin: 0px;
+    background-color: #27183E;
+    color: rgb(255, 245, 245);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
+  .action-btn:hover {
+    background-color: #ffffff;
+    color: black;
+  }
+
+
+    .modal-actions-open {
+        width: 150px; /* Definindo largura específica */
+        height: 30px; /* Ajusta a altura com base no conteúdo */
+        position: absolute;
+        top: 100%; /* Posiciona logo abaixo do ícone */
+        left: 0px; /* Alinha à esquerda do ícone */
+        background-color: white;
+        display:block ;
+        border-radius: 4px;
+        padding: 0px; /* Espaçamento interno */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        z-index: 10; 
+      
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 20%;
+    height: 30%;
+    text-align: center;
+  }
+  
+  
+  .btn-confirm {
+    background-color: #068344;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-confirm:hover {
+    background-color: #ffffff;
+    color: black;
+  }
+
+  .input_modal_edit{
+    width: 95%;
+    border: 1px solid black;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .btn-cancel {
+    background-color: #95a5a6;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #dbdbdb;
+    color: black;
+  }
+  

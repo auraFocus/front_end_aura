@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/sidebar.css'; 
 import { FaBars } from 'react-icons/fa'; 
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,10 +20,8 @@ const Sidebar = () => {
   
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <ul>
-          <li><a className="links_sidebar" href="/">Home</a></li>
-          <li><a className="links_sidebar" href="/about">About</a></li>
-          <li><a className="links_sidebar" href="/services">Services</a></li>
-          <li><a className="links_sidebar" href="/contact">Contact</a></li>
+        <li><Link className="links_sidebar" to="/students_page">Estudantes</Link></li>
+          
         </ul>
       </div>
       

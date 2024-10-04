@@ -31,7 +31,7 @@ export default defineConfig({
         target: 'http://18.118.184.194:3000',
         changeOrigin: true,
         secure: false,
-      },
+      }, 
     },
   },
 })
