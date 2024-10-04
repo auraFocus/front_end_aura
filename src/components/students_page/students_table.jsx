@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaEllipsisV } from 'react-icons/fa';
+import { FaEllipsisV, FaCopy } from 'react-icons/fa';
 import EditStudentModal from './edit_student_modal';
 import ConfirmDeleteModal from './confirm_delete_Modal';
 import SearchBar from '../search_bar';
@@ -11,7 +11,9 @@ export default function StudentsTable() {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [studentToDelete, setStudentToDelete] = useState(null); 
-  const [filteredStudents, setFilteredStudents] = useState([]); // Estudantes filtrados pela busca
+  const [filteredStudents, setFilteredStudents] = useState([]);
+  const [message, setMessage] = useState('');  
+  const [messageType, setMessageType] = useState(''); 
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -26,7 +28,7 @@ export default function StudentsTable() {
       if (response.ok) {
         const data = await response.json();
         setStudents(data);
-        setFilteredStudents(data); // Inicialmente, a lista filtrada é a mesma que a lista completa
+        setFilteredStudents(data);
       } else {
         console.error('Erro ao buscar os estudantes', response.statusText);
       }
@@ -34,8 +36,20 @@ export default function StudentsTable() {
     fetchStudents();
   }, []);
 
+ 
+  const showMessage = (msg, type, duration = 3000) => {
+    setMessage(msg);
+    setMessageType(type);
+    
+    
+    setTimeout(() => {
+      setMessage('');
+      setMessageType('');
+    }, duration); 
+  };
+
   const handleSearch = async (option, value) => {
-    console.log("URL SENDO PASSADA PARA BUSCA: ",`/aura/students/all_students?${option}=${value}`);
+    console.log("URL SENDO PASSADA PARA BUSCA: ", `/aura/students/all_students?${option}=${value}`);
     
     try {
       const token = localStorage.getItem('token');
@@ -61,7 +75,7 @@ export default function StudentsTable() {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      alert(`Estudante ${updatedStudent.name} editado com sucesso`);
+      showMessage(`Estudante ${updatedStudent.name} editado com sucesso`, 'success');
       setStudents((prevStudents) =>
         prevStudents.map((student) =>
           student.id === updatedStudent.id ? updatedStudent : student
@@ -69,6 +83,7 @@ export default function StudentsTable() {
       );
       setSelectedStudent(null); 
     } catch (error) {
+      showMessage('Erro ao editar estudante', 'error');
       console.error('Erro ao editar estudante:', error);
     }
   };
@@ -87,10 +102,22 @@ export default function StudentsTable() {
       });
       setStudents(students.filter((student) => student.id !== studentId));
       setStudentToDelete(null);
-      alert('Estudante apagado com sucesso');
+      showMessage('Estudante apagado com sucesso', 'success');
     } catch (error) {
+      showMessage('Erro ao apagar estudante', 'error');
       console.error('Erro ao apagar estudante:', error);
     }
+  };
+
+  const copyToClipboard = (studentId) => {
+    navigator.clipboard.writeText(studentId)
+      .then(() => {
+        showMessage('ID copiado para a área de transferência', 'success');
+      })
+      .catch((error) => {
+        showMessage('Erro ao copiar o ID', 'error');
+        console.error('Erro ao copiar o ID:', error);
+      });
   };
 
   const toggleModal = (studentId) => {
@@ -101,12 +128,20 @@ export default function StudentsTable() {
     <div>
       <h2>Lista de Estudantes</h2>
 
-      {/* Barra de busca com dropdown */}
+    
       <SearchBar onSearch={handleSearch} />
+
+     
+      {message && (
+        <div className={`message ${messageType === 'success' ? 'message-success' : 'message-error'}`}>
+          {message}
+        </div>
+      )}
 
       <table>
         <thead>
           <tr>
+            <th>Id</th>
             <th>Nome</th>
             <th>CPF</th>
             <th>Telefone</th>
@@ -116,6 +151,9 @@ export default function StudentsTable() {
         <tbody>
           {filteredStudents.map((student) => (
             <tr key={student.id}>
+              <td>
+                <FaCopy onClick={() => copyToClipboard(student.id)} style={{ cursor: 'pointer' }} />
+              </td>
               <td>{student.name}</td>
               <td>{student.cpf}</td>
               <td>{student.phone}</td>
@@ -162,4 +200,3 @@ export default function StudentsTable() {
     </div>
   );
 }
-''

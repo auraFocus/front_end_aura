@@ -21,6 +21,7 @@ const SearchBar = ({ onSearch }) => {
         <option value="name">Nome</option>
         <option value="cpf">CPF</option>
         <option value="email">Email</option>
+        <option value="id">Id</option>
       </select>
 
       <input
