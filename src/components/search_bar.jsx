@@ -1,21 +1,23 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-export default function SearchBar({onSearch}) {
-  const [searchOption, setSearchOption] = useState('name');
+export default function SearchBar({ onSearch }) {
+  const [searchOption, setSearchOption] = useState('Filtro');
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = () => {
-    onSearch(searchOption, searchValue);
-   
+    if (searchOption !== 'Filtro') {
+      onSearch(searchOption, searchValue);
+    } else {
+      alert('Por favor, selecione uma opção de filtro.');
+    }
   };
 
   return (
-    <div style={{ display: 'flex', gap: '10px',alignItems:'start' }}>
-      
+    <div style={{ display: 'flex', gap: '10px' }}>
       
       <div className="select">
-        <div className="selected" data-default="All">
+        <div className="selected" data-default="Filtro">
           {searchOption}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,66 +31,96 @@ export default function SearchBar({onSearch}) {
           </svg>
         </div>
         <div className="options">
-          <div title="Nome">
-            <input 
-              id="name" 
-              name="option" 
-              type="radio" 
-              checked={searchOption === 'name'} 
-              onChange={() => setSearchOption('name')} 
+         
+          <div title="Filtro">
+            <input
+              id="filtro"
+              name="option"
+              type="radio"
+              disabled
+              checked={searchOption === 'Filtro'}
+              onChange={() => setSearchOption('Filtro')}
             />
-            <label className="option" htmlFor="name">Nome</label>
+            <label className="option" htmlFor="filtro">
+              Filtro
+            </label>
+          </div>
+
+          
+          <div title="Nome">
+            <input
+              id="name"
+              name="option"
+              type="radio"
+              checked={searchOption === 'name'}
+              onChange={() => setSearchOption('name')}
+            />
+            <label className="option" htmlFor="name">
+              Nome
+            </label>
           </div>
           <div title="CPF">
-            <input 
-              id="cpf" 
-              name="option" 
-              type="radio" 
-              checked={searchOption === 'cpf'} 
-              onChange={() => setSearchOption('cpf')} 
+            <input
+              id="cpf"
+              name="option"
+              type="radio"
+              checked={searchOption === 'cpf'}
+              onChange={() => setSearchOption('cpf')}
             />
-            <label className="option" htmlFor="cpf">CPF</label>
+            <label className="option" htmlFor="cpf">
+              CPF
+            </label>
           </div>
           <div title="Email">
-            <input 
-              id="email" 
-              name="option" 
-              type="radio" 
-              checked={searchOption === 'email'} 
-              onChange={() => setSearchOption('email')} 
+            <input
+              id="email"
+              name="option"
+              type="radio"
+              checked={searchOption === 'email'}
+              onChange={() => setSearchOption('email')}
             />
-            <label className="option" htmlFor="email">Email</label>
+            <label className="option" htmlFor="email">
+              Email
+            </label>
           </div>
           <div title="Id">
-            <input 
-              id="id" 
-              name="option" 
-              type="radio" 
-              checked={searchOption === 'id'} 
-              onChange={() => setSearchOption('id')} 
+            <input
+              id="id"
+              name="option"
+              type="radio"
+              checked={searchOption === 'id'}
+              onChange={() => setSearchOption('id')}
             />
-            <label className="option" htmlFor="id">Id</label>
+            <label className="option" htmlFor="id">
+              Id
+            </label>
           </div>
         </div>
       </div>
 
-      {/* Input de busca */}
-      <input
+      
+      
+
+<div className="searchBox">
+
+<input
+        class="searchInput"
         type="text"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        placeholder={`Pesquisar por ${searchOption}`}
-        style={{ padding: '5px', width: '300px', borderRadius: '4px', border: '1px solid #ddd' }}
+        placeholder={`Pesquisar por ${searchOption !== 'Filtro' ? searchOption : ''}`}
+        disabled={searchOption === 'Filtro'} 
       />
+            
+        <button onClick={handleSearch}
+        disabled={searchOption === 'Filtro'} href="#"
+        className="searchButton">
+                   
+            <FaSearch/>
+                     
 
-      {/* Botão de busca */}
-      <button 
-        className="btn_search_bar" 
-        onClick={handleSearch} 
-        style={{ padding: '5px 10px', borderRadius: '4px', cursor: 'pointer', backgroundColor: '#27183E', color: '#fff' }}
-      >
-        <FaSearch />
-      </button>
+            </button>
+        </div>
     </div>
   );
 }
