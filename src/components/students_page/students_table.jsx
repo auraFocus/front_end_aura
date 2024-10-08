@@ -152,12 +152,12 @@ export default function StudentsTable() {
         </div>
       )}
 
-      <div>
-        <label>Itens por página:</label>
-        <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
-          <option value={25}>25</option>
-          <option value={75}>75</option>
-          <option value={100}>100</option>
+      <div className='container_paginacao'>
+        <label className='label_paginacao'>Itens por página:</label>
+        <select  className='select_paginacao'value={itemsPerPage} onChange={handleItemsPerPageChange}>
+          <option className='option_paginacao' value={25}>25</option>
+          <option className='option_paginacao' value={75}>75</option>
+          <option className='option_paginacao' value={100}>100</option>
         </select>
       </div>
 

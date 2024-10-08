@@ -11,7 +11,7 @@ import "../styles/students_page.css"
 
 export default function StudentsPage(){
     return (
-        <div>
+        <div className="students_page">
              <div className="header_information_dashboard">
              
              <School/>
