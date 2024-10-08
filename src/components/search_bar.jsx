@@ -72,7 +72,7 @@ export default function SearchBar({onSearch}) {
         </div>
       </div>
 
-      {/* Input de busca */}
+    
       <input
         type="text"
         value={searchValue}
@@ -81,7 +81,7 @@ export default function SearchBar({onSearch}) {
         style={{ padding: '5px', width: '300px', borderRadius: '4px', border: '1px solid #ddd' }}
       />
 
-      {/* Botão de busca */}
+
       <button 
         className="btn_search_bar" 
         onClick={handleSearch} 
