@@ -20,6 +20,7 @@ const Sidebar = () => {
   
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <ul>
+        <li><Link className="links_sidebar" to="/dashboard">Início</Link></li>
         <li><Link className="links_sidebar" to="/students_page">Estudantes</Link></li>
           
         </ul>

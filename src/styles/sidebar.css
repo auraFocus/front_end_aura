@@ -6,7 +6,12 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #000000;
+  color: #ffffff;
+  transition: left 0.3s ease;
+}
+
+.hamburger-button:hover{
+  transform: scale(1.05);
 }
 
 /* Estilos do Sidebar */
@@ -36,16 +41,27 @@
   padding: 10px 20px;
 }
 
-.sidebar ul li a {
+.links_sidebar {
+  display: flex;
+  justify-content: center;
   color: #fff;
   text-decoration: none;
-  display: block;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  height: 35px;
+  margin-top: 3px;
+  border-radius: 10px;
+  align-items: center;
 }
 
-.sidebar ul li a:hover {
-  background-color: #34495e;
-  cursor: pointer; /* Garante que o cursor seja um pointer no hover */
+
+
+.links_sidebar:hover {
+
+  cursor: pointer;
+  background-color: #a288e3; /* Roxo claro */
+  transform: scale(1.05); /
+
 }
 
 .overlay {

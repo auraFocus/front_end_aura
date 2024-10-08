@@ -5,9 +5,11 @@ html, body {
   
 }
 
+
 .students_page{
   height: 100vh;
   overflow-y: scroll;
+  color: white;
 }
 
 table {
@@ -17,7 +19,7 @@ table {
   th, td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    
   }
 
   .action-button {
@@ -94,6 +96,7 @@ table {
     width: 400px;
     max-width: 100%;
     text-align: center;
+    color: #27183E;
   }
   
   
@@ -309,8 +312,14 @@ table {
   cursor: pointer;
 
 }
+
+.searchButton:hover{
+  cursor: pointer;
+  transform: scale(1.15);
+
+}
 /*hover effect*/
-button:hover {
+.pagination_btn:hover {
   color: #fff;
   background-color: #1A1A1A;
   box-shadow: rgba(0, 0, 0, 0.5) 0 10px 20px;
@@ -334,6 +343,7 @@ button:active {
 
 .container_paginacao{
   margin-left: 3%;
+
 }
 
 .label_paginacao{
@@ -351,7 +361,38 @@ button:active {
 
 .option_paginacao{
   cursor: pointer;
+  border-radius: 5px;
+  
 }
+
+.container_paginacao{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.pagination_btn{
+  cursor: pointer;
+  border: none;
+  margin-right: 2px;
+  background-color: #27183E;
+  color: white;
+
+}
+
+.pagination_btn:hover{
+  cursor: pointer;
+  border-radius: 90px;
+  
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .modal-content {
@@ -365,6 +406,8 @@ button:active {
 
   .action-button, .action-btn {
     width: 80%; /* Aumentar a largura dos botões */
+    color: white;
+
   }
 
   .modal-actions {
@@ -467,7 +510,7 @@ table {
 th, td {
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  
 }
 
 .action-button {
@@ -627,3 +670,20 @@ th, td {
 
 }
 
+
+@media only screen and (min-width: 1920px){
+  .searchButton {
+    color: white;
+    position: absolute;
+    right: 3px;
+    width: 4%;
+    height: 80%;
+    border-radius: 50%;
+    background: var(--gradient-2, linear-gradient(90deg, #2AF598 0%, #009EFD 100%));
+    border: 0;
+    display: inline-block;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    cursor: pointer;
+  
+   }
+}

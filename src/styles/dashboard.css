@@ -1,14 +1,14 @@
 /* CSS Geral para alinhar os textos à direita */
 .school_card {
     display: flex;
-    justify-content: flex-end; /* Alinha o conteúdo ao final (direita) */
+    justify-content: center; /* Alinha o conteúdo ao final (direita) */
     margin-right: 20px; 
     background: rgba( 39, 24, 62, 0.3 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 6.5px );
--webkit-backdrop-filter: blur( 6.5px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 6.5px );
+    -webkit-backdrop-filter: blur( 6.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
     width: 20%;
     height: 10%;/* Espaçamento da borda direita */
   }
@@ -41,7 +41,8 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   
 
 .dashboard_container{
-    display: flexdashboard_container;
+    color: white;
+
 }
 
 .container_card_overview_users{
@@ -67,11 +68,12 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .icon_user {
     width: 100px;
     height: 100px;
-    color:#27183E;
+    color:#ffffff;
 
 }
 
 .card_dashboard_teachers{
+    
     display: block;
     justify-content: center;
     text-align: center;

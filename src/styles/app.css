@@ -7,4 +7,11 @@ html, body {
     height: 100%;
     overflow: hidden; /* Previne qualquer barra de rolagem extra */
     box-sizing: border-box;
+    background: linear-gradient(135deg, #27183E, #543D6E);
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    padding: 5%;
 }

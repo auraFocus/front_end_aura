@@ -1,13 +1,17 @@
 import React from "react";
-import '../styles/login_page.css';
+import '../styles/app.css';
 
 
 
 const Footer = () => {
     return (
-        <footer className="footer">
-        <p>@copyright aurafocus2024</p>
+     
+       
+     
+      <footer>
+        © 2024 - Todos os direitos reservados AuraFocus 
       </footer>
+   
     )
 }
 

@@ -4,6 +4,7 @@ import { FaEllipsisV, FaCopy } from 'react-icons/fa';
 import EditStudentModal from './edit_student_modal';
 import ConfirmDeleteModal from './confirm_delete_Modal';
 import SearchBar from '../search_bar';
+import { color } from 'chart.js/helpers';
 
 export default function StudentsTable() {
   const [students, setStudents] = useState([]);
@@ -16,8 +17,8 @@ export default function StudentsTable() {
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
   
-  const [itemsPerPage, setItemsPerPage] = useState(25); // Estado para o número de itens por página
-  const [currentPage, setCurrentPage] = useState(1); // Estado para a página atual
+  const [itemsPerPage, setItemsPerPage] = useState(25); 
+  const [currentPage, setCurrentPage] = useState(1); 
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -141,7 +142,7 @@ export default function StudentsTable() {
   const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
 
   return (
-    <div>
+    <div  className='students_table_container'>
       <h2>Lista de Estudantes</h2>
 
       <SearchBar onSearch={handleSearch} />
@@ -182,7 +183,7 @@ export default function StudentsTable() {
               <td>{student.phone}</td>
               <td>
                 <div className="action-button">
-                  <FaEllipsisV onClick={() => toggleModal(student.id)} />
+                  <FaEllipsisV style={{ color: 'white' }}  onClick={() => toggleModal(student.id)} />
                   {activeStudentId === student.id && (
                     <div className="modal-actions-open">
                       <button onClick={() => handleEdit(student)} className="action-btn">Editar</button>
@@ -198,7 +199,7 @@ export default function StudentsTable() {
 
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (
-          <button key={index} onClick={() => changePage(index + 1)} disabled={currentPage === index + 1}>
+          <button className='pagination_btn' key={index} onClick={() => changePage(index + 1)} disabled={currentPage === index + 1}>
             {index + 1}
           </button>
         ))}
