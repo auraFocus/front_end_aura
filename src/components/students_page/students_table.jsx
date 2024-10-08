@@ -7,22 +7,26 @@ import SearchBar from '../search_bar';
 
 export default function StudentsTable() {
   const [students, setStudents] = useState([]);
-  const [activeStudentId, setActiveStudentId] = useState(null);
+  const [filteredStudents, setFilteredStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [studentToDelete, setStudentToDelete] = useState(null); 
-  const [filteredStudents, setFilteredStudents] = useState([]);
-  const [message, setMessage] = useState('');  
-  const [messageType, setMessageType] = useState(''); 
+  const [studentToDelete, setStudentToDelete] = useState(null);
+  
+  const [activeStudentId, setActiveStudentId] = useState(null);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
+  
+  const [itemsPerPage, setItemsPerPage] = useState(25); // Estado para o número de itens por página
+  const [currentPage, setCurrentPage] = useState(1); // Estado para a página atual
 
   useEffect(() => {
     const fetchStudents = async () => {
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem('token');
       const response = await fetch('/aura/students/all_students', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
+          'Authorization': `Bearer ${token}`
         }
       });
       if (response.ok) {
@@ -36,21 +40,7 @@ export default function StudentsTable() {
     fetchStudents();
   }, []);
 
- 
-  const showMessage = (msg, type, duration = 3000) => {
-    setMessage(msg);
-    setMessageType(type);
-    
-    
-    setTimeout(() => {
-      setMessage('');
-      setMessageType('');
-    }, duration); 
-  };
-
   const handleSearch = async (option, value) => {
-    console.log("URL SENDO PASSADA PARA BUSCA: ", `/aura/students/all_students?${option}=${value}`);
-    
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(`/aura/students/all_students?${option}=${value}`, {
@@ -58,14 +48,23 @@ export default function StudentsTable() {
           'Authorization': `Bearer ${token}`,
         }
       });
-      setFilteredStudents(response.data); 
+      setFilteredStudents(response.data);
     } catch (error) {
       console.error('Erro ao buscar estudantes:', error);
     }
   };
 
+  const showMessage = (msg, type, duration = 3000) => {
+    setMessage(msg);
+    setMessageType(type);
+    setTimeout(() => {
+      setMessage('');
+      setMessageType('');
+    }, duration);
+  };
+
   const handleEdit = (student) => {
-    setSelectedStudent(student); 
+    setSelectedStudent(student);
   };
 
   const handleUpdate = async (updatedStudent) => {
@@ -81,7 +80,7 @@ export default function StudentsTable() {
           student.id === updatedStudent.id ? updatedStudent : student
         )
       );
-      setSelectedStudent(null); 
+      setSelectedStudent(null);
     } catch (error) {
       showMessage('Erro ao editar estudante', 'error');
       console.error('Erro ao editar estudante:', error);
@@ -124,19 +123,43 @@ export default function StudentsTable() {
     setActiveStudentId(activeStudentId === studentId ? null : studentId);
   };
 
+
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(parseInt(event.target.value));
+    setCurrentPage(1); 
+  };
+
+  
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentStudents = filteredStudents.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
+
   return (
     <div>
       <h2>Lista de Estudantes</h2>
 
-    
       <SearchBar onSearch={handleSearch} />
 
-     
       {message && (
         <div className={`message ${messageType === 'success' ? 'message-success' : 'message-error'}`}>
           {message}
         </div>
       )}
+
+      <div className='container_paginacao'>
+        <label className='label_paginacao'>Itens por página:</label>
+        <select  className='select_paginacao'value={itemsPerPage} onChange={handleItemsPerPageChange}>
+          <option className='option_paginacao' value={25}>25</option>
+          <option className='option_paginacao' value={75}>75</option>
+          <option className='option_paginacao' value={100}>100</option>
+        </select>
+      </div>
 
       <table>
         <thead>
@@ -149,7 +172,7 @@ export default function StudentsTable() {
           </tr>
         </thead>
         <tbody>
-          {filteredStudents.map((student) => (
+          {currentStudents.map((student) => (
             <tr key={student.id}>
               <td>
                 <FaCopy onClick={() => copyToClipboard(student.id)} style={{ cursor: 'pointer' }} />
@@ -162,18 +185,8 @@ export default function StudentsTable() {
                   <FaEllipsisV onClick={() => toggleModal(student.id)} />
                   {activeStudentId === student.id && (
                     <div className="modal-actions-open">
-                      <button
-                        onClick={() => handleEdit(student)}
-                        className="action-btn"
-                      >
-                        Editar
-                      </button>
-                      <button
-                        onClick={() => handleDelete(student.id)}
-                        className="action-btn"
-                      >
-                        Apagar
-                      </button>
+                      <button onClick={() => handleEdit(student)} className="action-btn">Editar</button>
+                      <button onClick={() => handleDelete(student.id)} className="action-btn">Apagar</button>
                     </div>
                   )}
                 </div>
@@ -183,10 +196,18 @@ export default function StudentsTable() {
         </tbody>
       </table>
 
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button key={index} onClick={() => changePage(index + 1)} disabled={currentPage === index + 1}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
+
       {selectedStudent && (
         <EditStudentModal
           student={selectedStudent}
-          onClose={() => setSelectedStudent(null)} 
+          onClose={() => setSelectedStudent(null)}
           onConfirm={handleUpdate}
         />
       )}
