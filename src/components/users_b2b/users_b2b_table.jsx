@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEllipsisV, FaCopy } from 'react-icons/fa';
-import EditStudentModal from '../edit_student_modal';
+import Edituser_b2bModal from '../edit_student_modal';
 import ConfirmDeleteModal from '../confirm_delete_Modal';
 import SearchBar from '../search_bar';
+import '../../styles/users_page.css'
 
-
-export default function StudentsTable() {
-  const [students, setStudents] = useState([]);
-  const [filteredStudents, setFilteredStudents] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState(null);
+export default function UsersB2BTable() {
+  const [user_b2bs, setuser_b2bs] = useState([]);
+  const [filtereduser_b2bs, setFiltereduser_b2bs] = useState([]);
+  const [selecteduser_b2b, setSelecteduser_b2b] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [studentToDelete, setStudentToDelete] = useState(null);
+  const [user_b2bToDelete, setuser_b2bToDelete] = useState(null);
   
-  const [activeStudentId, setActiveStudentId] = useState(null);
+  const [activeuser_b2bId, setActiveuser_b2bId] = useState(null);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
   
@@ -21,35 +21,42 @@ export default function StudentsTable() {
   const [currentPage, setCurrentPage] = useState(1); 
 
   useEffect(() => {
-    const fetchStudents = async () => {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/aura/students/all_students', {
+    const fetchuserB2bs = async () => {
+      const token = localStorage.getItem('token')
+      console.log("TOKEN TELA B2B", token);
+      
+      const response = await fetch('/aura/b2b_admin/all_b2badmin', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         }
       });
+      
       if (response.ok) {
+        
+        
         const data = await response.json();
-        setStudents(data);
-        setFilteredStudents(data);
+        
+        setuser_b2bs(data);
+        setFiltereduser_b2bs(data);
+        console.log("LOGS ADMINS",data);
       } else {
         console.error('Erro ao buscar os estudantes', response.statusText);
       }
     };
-    fetchStudents();
+    fetchuserB2bs();
   }, []);
 
   const handleSearch = async (option, value) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/aura/students/all_students?${option}=${value}`, {
+      const response = await axios.get(`/aura/b2b_admin/all_b2badmin?${option}=${value}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
       });
-      setFilteredStudents(response.data);
+      setFiltereduser_b2bs(response.data);
     } catch (error) {
       console.error('Erro ao buscar estudantes:', error);
     }
@@ -64,44 +71,54 @@ export default function StudentsTable() {
     }, duration);
   };
 
-  const handleEdit = (student) => {
-    setSelectedStudent(student);
+  const handleEdit = (user_b2b) => {
+
+    console.log("USER_B2B EDITANDO NA TABELA",user_b2b);
+    setSelecteduser_b2b(user_b2b);
+    console.log("USER NO STATE TABELA",user_b2b);
+    
+    
   };
 
-  const handleUpdate = async (updatedStudent) => {
+  const handleUpdate = async (updateduser_b2b) => {
     try {
-      await axios.patch(`/aura/students/update_student/${updatedStudent.id}`, updatedStudent, {
+      await axios.patch(`/aura/b2b_admin/update_b2b_admin/${updateduser_b2b.id}`, updateduser_b2b, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      showMessage(`Estudante ${updatedStudent.name} editado com sucesso`, 'success');
-      setStudents((prevStudents) =>
-        prevStudents.map((student) =>
-          student.id === updatedStudent.id ? updatedStudent : student
+      showMessage(`Estudante ${updateduser_b2b.name} editado com sucesso`, 'success');
+      setuser_b2bs((prevuser_b2bs) =>
+        prevuser_b2bs.map((user_b2b) =>
+          user_b2b.id === updateduser_b2b.id ? updateduser_b2b : user_b2b
         )
       );
-      setSelectedStudent(null);
+      setSelecteduser_b2b(null);
     } catch (error) {
       showMessage('Erro ao editar estudante', 'error');
       console.error('Erro ao editar estudante:', error);
     }
   };
 
-  const handleDelete = (studentId) => {
+  const handleDelete = (user_b2bId) => {
     setShowDeleteModal(true);
-    setStudentToDelete(students.find((student) => student.id === studentId));
+    console.log("LOGANDO ID DO USER NO HANDLE DELETE", user_b2bId);
+    
+    setuser_b2bToDelete(user_b2bs.find((user_b2b) => user_b2b.id === user_b2bId));
+
+    console.log("LOGANDO USER TO DELETE", user_b2bToDelete);
+    
   };
 
-  const confirmDelete = async (studentId) => {
+  const confirmDelete = async (user_b2bId) => {
     try {
-      await axios.delete(`/aura/students/delete_student/${studentId}`, {
+      await axios.delete(`/aura/b2b_admin/delete_b2b_admin/${user_b2bId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setStudents(students.filter((student) => student.id !== studentId));
-      setStudentToDelete(null);
+      setuser_b2bs(user_b2bs.filter((user_b2b) => user_b2b.id !== user_b2bId));
+      setuser_b2bToDelete(null);
       showMessage('Estudante apagado com sucesso', 'success');
     } catch (error) {
       showMessage('Erro ao apagar estudante', 'error');
@@ -109,8 +126,8 @@ export default function StudentsTable() {
     }
   };
 
-  const copyToClipboard = (studentId) => {
-    navigator.clipboard.writeText(studentId)
+  const copyToClipboard = (user_b2bId) => {
+    navigator.clipboard.writeText(user_b2bId)
       .then(() => {
         showMessage('ID copiado para a área de transferência', 'success');
       })
@@ -120,8 +137,8 @@ export default function StudentsTable() {
       });
   };
 
-  const toggleModal = (studentId) => {
-    setActiveStudentId(activeStudentId === studentId ? null : studentId);
+  const toggleModal = (user_b2bId) => {
+    setActiveuser_b2bId(activeuser_b2bId === user_b2bId ? null : user_b2bId);
   };
 
 
@@ -138,15 +155,16 @@ export default function StudentsTable() {
   
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentStudents = filteredStudents.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
+  const currentuser_b2bs = filtereduser_b2bs.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filtereduser_b2bs.length / itemsPerPage);
+
 
   return (
-    <div  className='students_table_container'>
-      <h2>Lista de Estudantes</h2>
+    <div  className='user_b2bs_table_container'>
+      
 
       <SearchBar onSearch={handleSearch} />
-
+      <h2>Lista de Administradores</h2>
       {message && (
         <div className={`message ${messageType === 'success' ? 'message-success' : 'message-error'}`}>
           {message}
@@ -173,21 +191,21 @@ export default function StudentsTable() {
           </tr>
         </thead>
         <tbody>
-          {currentStudents.map((student) => (
-            <tr key={student.id}>
+          {currentuser_b2bs.map((user_b2b) => (
+            <tr key={user_b2b.id}>
               <td>
-                <FaCopy onClick={() => copyToClipboard(student.id)} style={{ cursor: 'pointer' }} />
+                <FaCopy onClick={() => copyToClipboard(user_b2b.id)} style={{ cursor: 'pointer' }} />
               </td>
-              <td>{student.name}</td>
-              <td>{student.cpf}</td>
-              <td>{student.phone}</td>
+              <td>{user_b2b.name}</td>
+              <td>{user_b2b.cpf}</td>
+              <td>{user_b2b.phone}</td>
               <td>
                 <div className="action-button">
-                  <FaEllipsisV style={{ color: 'white' }}  onClick={() => toggleModal(student.id)} />
-                  {activeStudentId === student.id && (
+                  <FaEllipsisV style={{ color: 'white' }}  onClick={() => toggleModal(user_b2b.id)} />
+                  {activeuser_b2bId === user_b2b.id && (
                     <div className="modal-actions-open">
-                      <button onClick={() => handleEdit(student)} className="action-btn">Editar</button>
-                      <button onClick={() => handleDelete(student.id)} className="action-btn">Apagar</button>
+                      <button onClick={() => handleEdit(user_b2b)} className="action-btn">Editar</button>
+                      <button onClick={() => handleDelete(user_b2b.id)} className="action-btn">Apagar</button>
                     </div>
                   )}
                 </div>
@@ -205,16 +223,16 @@ export default function StudentsTable() {
         ))}
       </div>
 
-      {selectedStudent && (
-        <EditStudentModal
-          student={selectedStudent}
-          onClose={() => setSelectedStudent(null)}
+      {selecteduser_b2b && (
+        <Edituser_b2bModal
+          user={selecteduser_b2b}
+          onClose={() => setSelecteduser_b2b(null)}
           onConfirm={handleUpdate}
         />
       )}
-      {showDeleteModal && studentToDelete && (
+      {showDeleteModal && user_b2bToDelete && (
         <ConfirmDeleteModal
-          student={studentToDelete}
+          user_b2b={user_b2bToDelete}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={confirmDelete}
         />

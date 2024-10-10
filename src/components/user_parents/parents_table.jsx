@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEllipsisV, FaCopy } from 'react-icons/fa';
-import EditStudentModal from '../edit_student_modal';
+import EditparentModal from '../edit_student_modal';
 import ConfirmDeleteModal from '../confirm_delete_Modal';
 import SearchBar from '../search_bar';
+import '../../styles/users_page.css'
 
-
-export default function StudentsTable() {
-  const [students, setStudents] = useState([]);
-  const [filteredStudents, setFilteredStudents] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState(null);
+export default function ParentsTable() {
+  const [parents, setparents] = useState([]);
+  const [filteredparents, setFilteredparents] = useState([]);
+  const [selectedparent, setSelectedparent] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [studentToDelete, setStudentToDelete] = useState(null);
+  const [parentToDelete, setparentToDelete] = useState(null);
   
-  const [activeStudentId, setActiveStudentId] = useState(null);
+  const [activeparentId, setActiveparentId] = useState(null);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
   
@@ -21,9 +21,9 @@ export default function StudentsTable() {
   const [currentPage, setCurrentPage] = useState(1); 
 
   useEffect(() => {
-    const fetchStudents = async () => {
+    const fetchparents = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('/aura/students/all_students', {
+      const response = await fetch('/aura/parents/all_parents', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -32,24 +32,24 @@ export default function StudentsTable() {
       });
       if (response.ok) {
         const data = await response.json();
-        setStudents(data);
-        setFilteredStudents(data);
+        setparents(data);
+        setFilteredparents(data);
       } else {
         console.error('Erro ao buscar os estudantes', response.statusText);
       }
     };
-    fetchStudents();
+    fetchparents();
   }, []);
 
   const handleSearch = async (option, value) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/aura/students/all_students?${option}=${value}`, {
+      const response = await axios.get(`/aura/parents/all_parents?${option}=${value}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
       });
-      setFilteredStudents(response.data);
+      setFilteredparents(response.data);
     } catch (error) {
       console.error('Erro ao buscar estudantes:', error);
     }
@@ -64,44 +64,44 @@ export default function StudentsTable() {
     }, duration);
   };
 
-  const handleEdit = (student) => {
-    setSelectedStudent(student);
+  const handleEdit = (parent) => {
+    setSelectedparent(parent);
   };
 
-  const handleUpdate = async (updatedStudent) => {
+  const handleUpdate = async (updatedparent) => {
     try {
-      await axios.patch(`/aura/students/update_student/${updatedStudent.id}`, updatedStudent, {
+      await axios.patch(`/aura/parentes/update_parent/${updatedparent.id}`, updatedparent, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      showMessage(`Estudante ${updatedStudent.name} editado com sucesso`, 'success');
-      setStudents((prevStudents) =>
-        prevStudents.map((student) =>
-          student.id === updatedStudent.id ? updatedStudent : student
+      showMessage(`Estudante ${updatedparent.name} editado com sucesso`, 'success');
+      setparents((prevparents) =>
+        prevparents.map((parent) =>
+          parent.id === updatedparent.id ? updatedparent : parent
         )
       );
-      setSelectedStudent(null);
+      setSelectedparent(null);
     } catch (error) {
       showMessage('Erro ao editar estudante', 'error');
       console.error('Erro ao editar estudante:', error);
     }
   };
 
-  const handleDelete = (studentId) => {
+  const handleDelete = (parentId) => {
     setShowDeleteModal(true);
-    setStudentToDelete(students.find((student) => student.id === studentId));
+    setparentToDelete(parents.find((parent) => parent.id === parentId));
   };
 
-  const confirmDelete = async (studentId) => {
+  const confirmDelete = async (parentId) => {
     try {
-      await axios.delete(`/aura/students/delete_student/${studentId}`, {
+      await axios.delete(`/aura/parentes/delete_parent/${parentId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      setStudents(students.filter((student) => student.id !== studentId));
-      setStudentToDelete(null);
+      setparents(parents.filter((parent) => parent.id !== parentId));
+      setparentToDelete(null);
       showMessage('Estudante apagado com sucesso', 'success');
     } catch (error) {
       showMessage('Erro ao apagar estudante', 'error');
@@ -109,8 +109,8 @@ export default function StudentsTable() {
     }
   };
 
-  const copyToClipboard = (studentId) => {
-    navigator.clipboard.writeText(studentId)
+  const copyToClipboard = (parentId) => {
+    navigator.clipboard.writeText(parentId)
       .then(() => {
         showMessage('ID copiado para a área de transferência', 'success');
       })
@@ -120,8 +120,8 @@ export default function StudentsTable() {
       });
   };
 
-  const toggleModal = (studentId) => {
-    setActiveStudentId(activeStudentId === studentId ? null : studentId);
+  const toggleModal = (parentId) => {
+    setActiveparentId(activeparentId === parentId ? null : parentId);
   };
 
 
@@ -138,15 +138,15 @@ export default function StudentsTable() {
   
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentStudents = filteredStudents.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
+  const currentparents = filteredparents.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredparents.length / itemsPerPage);
 
   return (
-    <div  className='students_table_container'>
-      <h2>Lista de Estudantes</h2>
+    <div  className='parents_table_container'>
+      
 
       <SearchBar onSearch={handleSearch} />
-
+      <h2>Lista de Professores</h2>
       {message && (
         <div className={`message ${messageType === 'success' ? 'message-success' : 'message-error'}`}>
           {message}
@@ -173,21 +173,21 @@ export default function StudentsTable() {
           </tr>
         </thead>
         <tbody>
-          {currentStudents.map((student) => (
-            <tr key={student.id}>
+          {currentparents.map((parent) => (
+            <tr key={parent.id}>
               <td>
-                <FaCopy onClick={() => copyToClipboard(student.id)} style={{ cursor: 'pointer' }} />
+                <FaCopy onClick={() => copyToClipboard(parent.id)} style={{ cursor: 'pointer' }} />
               </td>
-              <td>{student.name}</td>
-              <td>{student.cpf}</td>
-              <td>{student.phone}</td>
+              <td>{parent.name}</td>
+              <td>{parent.cpf}</td>
+              <td>{parent.phone}</td>
               <td>
                 <div className="action-button">
-                  <FaEllipsisV style={{ color: 'white' }}  onClick={() => toggleModal(student.id)} />
-                  {activeStudentId === student.id && (
+                  <FaEllipsisV style={{ color: 'white' }}  onClick={() => toggleModal(parent.id)} />
+                  {activeparentId === parent.id && (
                     <div className="modal-actions-open">
-                      <button onClick={() => handleEdit(student)} className="action-btn">Editar</button>
-                      <button onClick={() => handleDelete(student.id)} className="action-btn">Apagar</button>
+                      <button onClick={() => handleEdit(parent)} className="action-btn">Editar</button>
+                      <button onClick={() => handleDelete(parent.id)} className="action-btn">Apagar</button>
                     </div>
                   )}
                 </div>
@@ -205,16 +205,16 @@ export default function StudentsTable() {
         ))}
       </div>
 
-      {selectedStudent && (
-        <EditStudentModal
-          student={selectedStudent}
-          onClose={() => setSelectedStudent(null)}
+      {selectedparent && (
+        <EditparentModal
+          parent={selectedparent}
+          onClose={() => setSelectedparent(null)}
           onConfirm={handleUpdate}
         />
       )}
-      {showDeleteModal && studentToDelete && (
+      {showDeleteModal && parentToDelete && (
         <ConfirmDeleteModal
-          student={studentToDelete}
+          parent={parentToDelete}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={confirmDelete}
         />

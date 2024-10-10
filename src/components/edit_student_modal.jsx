@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "../../styles/students_page.css"
+import "../styles/users_page.css"
 
-const EditStudentModal = ({ student, onClose, onConfirm }) => {
-  const [editedStudent, setEditedStudent] = useState(student);
+const EditStudentModal = ({user, onClose, onConfirm }) => {
+  const [editedStudent, setEditedStudent] = useState(user);
 
-  console.log("NOME DO ESTUDANTE NO MODAL DE EXCLUSÃO",student);
+
   
 
   const handleChange = (e) => {

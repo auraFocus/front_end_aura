@@ -22,7 +22,9 @@ const Sidebar = () => {
         <ul>
         <li><Link className="links_sidebar" to="/dashboard">Início</Link></li>
         <li><Link className="links_sidebar" to="/students_page">Estudantes</Link></li>
-          
+        <li><Link className="links_sidebar" to="/teachers_page">Professores</Link></li>
+        <li><Link className="links_sidebar" to="/parents_page">Pais</Link></li>  
+        <li><Link className='links_sidebar' to="/users_b2b_page">Administradores</Link></li>
         </ul>
       </div>
       

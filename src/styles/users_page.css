@@ -6,7 +6,7 @@ html, body {
 }
 
 
-.students_page{
+.users_page{
   height: 100vh;
   overflow-y: scroll;
   color: white;
