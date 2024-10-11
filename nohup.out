@@ -1,0 +1,26 @@
+ INFO  Accepting connections at http://localhost:3000
+ INFO  Accepting connections at http://localhost:3000
+ HTTP  10/11/2024 7:49:46 PM 200.103.158.32 GET /
+ HTTP  10/11/2024 7:49:46 PM 200.103.158.32 Returned 304 in 14 ms
+ HTTP  10/11/2024 7:49:46 PM 200.103.158.32 GET /assets/index-D6YlWs8t.css
+ HTTP  10/11/2024 7:49:46 PM 200.103.158.32 Returned 304 in 2 ms
+ HTTP  10/11/2024 7:49:46 PM 200.103.158.32 GET /assets/index-Frj92izB.js
+ HTTP  10/11/2024 7:49:46 PM 200.103.158.32 Returned 304 in 2 ms
+ HTTP  10/11/2024 7:49:47 PM 200.103.158.32 GET /assets/logo-h6jLw7CJ.png
+ HTTP  10/11/2024 7:49:47 PM 200.103.158.32 Returned 304 in 1 ms
+ HTTP  10/11/2024 7:49:47 PM 200.103.158.32 GET /vite.svg
+ HTTP  10/11/2024 7:49:47 PM 200.103.158.32 Returned 304 in 1 ms
+ INFO  Accepting connections at http://localhost:43617
+ INFO  Accepting connections at http://localhost:33377
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 GET /
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 Returned 304 in 0 ms
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 GET /assets/index-Frj92izB.js
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 Returned 304 in 1 ms
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 GET /assets/index-D6YlWs8t.css
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 Returned 304 in 0 ms
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 GET /assets/logo-h6jLw7CJ.png
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 Returned 304 in 1 ms
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 GET /vite.svg
+ HTTP  10/11/2024 7:54:38 PM 200.103.158.32 Returned 304 in 1 ms
+ HTTP  10/11/2024 7:59:06 PM 205.210.31.220 GET /
+ HTTP  10/11/2024 7:59:06 PM 205.210.31.220 Returned 200 in 2 ms
