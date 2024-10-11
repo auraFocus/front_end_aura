@@ -1,0 +1,56 @@
+/* Estilo para o overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com opacidade */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ficar acima de todo o resto */
+  }
+  
+  /* Estilo para o conteúdo do modal */
+  .modal-content {
+    background-color: white; /* Fundo branco */
+    padding: 20px;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 300px;
+    text-align: center;
+  }
+  
+  /* Botão de fechar (ícone X) */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Ícone X vermelho */
+  .close-icon {
+    font-size: 24px;
+    color: red;
+  }
+  
+  /* Botão principal */
+  .modal-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .modal-button:hover {
+    background-color: #45a049;
+  }
+  
