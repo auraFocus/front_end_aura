@@ -30,7 +30,7 @@ const TokenExpiredModal = ({ isOpen}) => {
         </button>
         <h2>TOKEN EXPIRADO</h2>
         <p>Faça login novamente.</p>
-        <button className="modal-button" onClick={onClose}>
+        <button className="modal-button" >
           OK
         </button>
       </div>

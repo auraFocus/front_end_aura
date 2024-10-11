@@ -29,7 +29,7 @@ const LoginForm = () => {
 
         try {
             const response = await axios.post(
-                "/aura/auth/",
+                `${import.meta.env.VITE_API_URL}/aura/auth/`,
                 loginData,
                 {
                     headers:{
