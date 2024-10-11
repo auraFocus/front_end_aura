@@ -207,14 +207,14 @@ export default function TeachersTable() {
 
       {selectedteacher && (
         <EditteacherModal
-          teacher={selectedteacher}
+          user={selectedteacher}
           onClose={() => setSelectedteacher(null)}
           onConfirm={handleUpdate}
         />
       )}
       {showDeleteModal && teacherToDelete && (
         <ConfirmDeleteModal
-          teacher={teacherToDelete}
+          user={teacherToDelete}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={confirmDelete}
         />

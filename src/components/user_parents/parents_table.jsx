@@ -207,14 +207,14 @@ export default function ParentsTable() {
 
       {selectedparent && (
         <EditparentModal
-          parent={selectedparent}
+          user={selectedparent}
           onClose={() => setSelectedparent(null)}
           onConfirm={handleUpdate}
         />
       )}
       {showDeleteModal && parentToDelete && (
         <ConfirmDeleteModal
-          parent={parentToDelete}
+          user={parentToDelete}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={confirmDelete}
         />

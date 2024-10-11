@@ -207,14 +207,14 @@ export default function StudentsTable() {
 
       {selectedStudent && (
         <EditStudentModal
-          student={selectedStudent}
+          user={selectedStudent}
           onClose={() => setSelectedStudent(null)}
           onConfirm={handleUpdate}
         />
       )}
       {showDeleteModal && studentToDelete && (
         <ConfirmDeleteModal
-          student={studentToDelete}
+          user={studentToDelete}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={confirmDelete}
         />

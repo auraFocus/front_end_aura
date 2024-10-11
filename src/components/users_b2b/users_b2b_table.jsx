@@ -101,13 +101,10 @@ export default function UsersB2BTable() {
   };
 
   const handleDelete = (user_b2bId) => {
-    setShowDeleteModal(true);
-    console.log("LOGANDO ID DO USER NO HANDLE DELETE", user_b2bId);
-    
-    setuser_b2bToDelete(user_b2bs.find((user_b2b) => user_b2b.id === user_b2bId));
-
-    console.log("LOGANDO USER TO DELETE", user_b2bToDelete);
-    
+    const userToDelete = user_b2bs.find((user_b2b) => user_b2b.id === user_b2bId);
+    setuser_b2bToDelete(userToDelete);  
+    setShowDeleteModal(true);           
+    console.log("USER TO DELETE CONFIRM DELETE", userToDelete);
   };
 
   const confirmDelete = async (user_b2bId) => {
@@ -117,7 +114,10 @@ export default function UsersB2BTable() {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
+
       setuser_b2bs(user_b2bs.filter((user_b2b) => user_b2b.id !== user_b2bId));
+      
+      
       setuser_b2bToDelete(null);
       showMessage('Estudante apagado com sucesso', 'success');
     } catch (error) {
@@ -232,7 +232,7 @@ export default function UsersB2BTable() {
       )}
       {showDeleteModal && user_b2bToDelete && (
         <ConfirmDeleteModal
-          user_b2b={user_b2bToDelete}
+          user={user_b2bToDelete}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={confirmDelete}
         />
