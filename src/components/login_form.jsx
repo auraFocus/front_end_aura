@@ -26,7 +26,7 @@ const LoginForm = () => {
             username:username,
             password:password,
         }
-          console.log("LOG PARA AJUSTE AWS", import.meta.env.VITE_API_URL);
+          console.log("LOG PARA AJUSTE AWS CHECAGEM", import.meta.env.VITE_API_URL);
           
         try {
             const response = await axios.post(
