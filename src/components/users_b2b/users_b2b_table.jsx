@@ -25,7 +25,7 @@ export default function UsersB2BTable() {
       const token = localStorage.getItem('token')
       console.log("TOKEN TELA B2B", token);
       
-      const response = await fetch('/aura/b2b_admin/all_b2badmin', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/aura/b2b_admin/all_b2badmin`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export default function UsersB2BTable() {
   const handleSearch = async (option, value) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/aura/b2b_admin/all_b2badmin?${option}=${value}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/b2b_admin/all_b2badmin?${option}=${value}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -82,7 +82,7 @@ export default function UsersB2BTable() {
 
   const handleUpdate = async (updateduser_b2b) => {
     try {
-      await axios.patch(`/aura/b2b_admin/update_b2b_admin/${updateduser_b2b.id}`, updateduser_b2b, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/aura/b2b_admin/update_b2b_admin/${updateduser_b2b.id}`, updateduser_b2b, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -109,7 +109,7 @@ export default function UsersB2BTable() {
 
   const confirmDelete = async (user_b2bId) => {
     try {
-      await axios.delete(`/aura/b2b_admin/delete_b2b_admin/${user_b2bId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/aura/b2b_admin/delete_b2b_admin/${user_b2bId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

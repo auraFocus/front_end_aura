@@ -23,7 +23,7 @@ export default function StudentsTable() {
   useEffect(() => {
     const fetchStudents = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('/aura/students/all_students', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/aura/students/all_students`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function StudentsTable() {
   const handleSearch = async (option, value) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/aura/students/all_students?${option}=${value}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/students/all_students?${option}=${value}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -70,7 +70,7 @@ export default function StudentsTable() {
 
   const handleUpdate = async (updatedStudent) => {
     try {
-      await axios.patch(`/aura/students/update_student/${updatedStudent.id}`, updatedStudent, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/aura/students/update_student/${updatedStudent.id}`, updatedStudent, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -95,7 +95,7 @@ export default function StudentsTable() {
 
   const confirmDelete = async (studentId) => {
     try {
-      await axios.delete(`/aura/students/delete_student/${studentId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/aura/students/delete_student/${studentId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

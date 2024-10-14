@@ -23,7 +23,7 @@ export default function TeachersTable() {
   useEffect(() => {
     const fetchteachers = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('/aura/teachers/all_teachers', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/aura/teachers/all_teachers`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function TeachersTable() {
   const handleSearch = async (option, value) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/aura/teachers/all_teachers?${option}=${value}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/teachers/all_teachers?${option}=${value}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -70,7 +70,7 @@ export default function TeachersTable() {
 
   const handleUpdate = async (updatedteacher) => {
     try {
-      await axios.patch(`/aura/teachers/update_teacher/${updatedteacher.id}`, updatedteacher, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/aura/teachers/update_teacher/${updatedteacher.id}`, updatedteacher, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -95,7 +95,7 @@ export default function TeachersTable() {
 
   const confirmDelete = async (teacherId) => {
     try {
-      await axios.delete(`/aura/teachers/delete_teacher/${teacherId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/aura/teachers/delete_teacher/${teacherId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

@@ -33,13 +33,13 @@
     cursor: pointer;
   }
   
-  /* Ícone X vermelho */
+
   .close-icon {
     font-size: 24px;
     color: red;
   }
   
-  /* Botão principal */
+  
   .modal-button {
     background-color: #4CAF50;
     color: white;
