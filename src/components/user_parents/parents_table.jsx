@@ -23,7 +23,7 @@ export default function ParentsTable() {
   useEffect(() => {
     const fetchparents = async () => {
       const token = localStorage.getItem('token');
-      const response = await fetch('/aura/parents/all_parents', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/aura/parents/all_parents`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function ParentsTable() {
   const handleSearch = async (option, value) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/aura/parents/all_parents?${option}=${value}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/parents/all_parents?${option}=${value}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         }
@@ -70,7 +70,7 @@ export default function ParentsTable() {
 
   const handleUpdate = async (updatedparent) => {
     try {
-      await axios.patch(`/aura/parentes/update_parent/${updatedparent.id}`, updatedparent, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/aura/parentes/update_parent/${updatedparent.id}`, updatedparent, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -95,7 +95,7 @@ export default function ParentsTable() {
 
   const confirmDelete = async (parentId) => {
     try {
-      await axios.delete(`/aura/parentes/delete_parent/${parentId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/aura/parentes/delete_parent/${parentId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

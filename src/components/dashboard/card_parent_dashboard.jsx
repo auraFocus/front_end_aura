@@ -14,7 +14,7 @@ export default function CardparentsDashboard(){
 
 
         try {
-            const response = await axios.get("/aura/parents/all_parents" ,{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/parents/all_parents` ,{
                 headers:{
                     "Content-Type":"application/json",
                     Authorization:`Bearer ${localStorage.getItem("token")}`
