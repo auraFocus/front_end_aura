@@ -22,7 +22,7 @@ export default function CardparentsDashboard(){
             });
 
             const parentsData = response.data;
-            console.log("DADOS PAIS",parentsData);
+            console.log("URL CARD PAIS",`${import.meta.env.VITE_API_URL}/aura/parents/all_parents`);
 
             Setparents(parentsData);
 
