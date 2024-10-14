@@ -12,7 +12,7 @@ export default function CardparentsDashboard(){
     const Fecthparents = async () =>{
         console.log(localStorage.getItem("token"));
 
-
+	    console.log("LOGANDO URL PAIS CARD",`${import.meta.env.VITE_API_URL}/aura/parents/all_parents`);
         try {
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/parents/all_parents` ,{
                 headers:{
