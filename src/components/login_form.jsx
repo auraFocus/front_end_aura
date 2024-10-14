@@ -26,11 +26,12 @@ const LoginForm = () => {
             username:username,
             password:password,
         }
-
+          console.log("LOG PARA AJUSTE AWS CHECAGEM", import.meta.env.VITE_API_URL);
+          
         try {
             const response = await axios.post(
                 `${import.meta.env.VITE_API_URL}/aura/auth/`,
-                loginData,
+                loginData,  
                 {
                     headers:{
                         "Content-Type":"application/json"
