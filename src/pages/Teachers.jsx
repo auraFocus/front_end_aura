@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/sidebar";
 import TeachersTable from "../components/teachers_page/teachers_table";
-import School from "../components/dashboard/school";
+import School from "../components/dashboard/user_modal";
 
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import School from "../components/dashboard/school";
+import School from "../components/dashboard/user_modal";
 import Sidebar from "../components/sidebar";
 import UsersB2BTable from "../components/users_b2b/users_b2b_table";
 
