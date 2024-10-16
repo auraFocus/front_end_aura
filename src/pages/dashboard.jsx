@@ -5,7 +5,6 @@ import "../styles/dashboard.css";
 import CardStudenDashboard from "../components/dashboard/card_student_dashboard";
 import CardTeachersDashboard from "../components/dashboard/card_teacher_dashboard";
 import CardparentsDashboard from "../components/dashboard/card_parent_dashboard";
-import UserModal from "../components/dashboard/user_modal";
 import CardUser from "../components/card_user";
 
 const Dashboard = () => {

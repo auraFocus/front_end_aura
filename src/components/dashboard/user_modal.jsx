@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import "../../styles/dashboard.css"; // Adicione o estilo do modal
+import "../../styles/dashboard.css";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const getSchoolID = () => {
     const token = localStorage.getItem("token");
@@ -60,7 +61,9 @@ export default function UserModal({ onClose, onLogout }) {
                 ) : (
                     <p>Você não está associado a nenhuma escola.</p>
                 )}
-                <button onClick={onLogout}>Logout</button>
+               <button className="logout_button" onClick={onLogout}>
+                    <FaSignOutAlt className="logout_icon" /> Logout
+                </button>
             </div>
         </div>
     );

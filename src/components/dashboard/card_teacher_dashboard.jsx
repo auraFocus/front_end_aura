@@ -14,7 +14,7 @@ export default function CardTeachersDashboard(){
 
 
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}aura/teachers/all_teachers` ,{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/teachers/all_teachers` ,{
                 headers:{
                     "Content-Type":"application/json",
                     Authorization:`Bearer ${localStorage.getItem("token")}`

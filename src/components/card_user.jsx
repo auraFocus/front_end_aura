@@ -3,6 +3,7 @@ import "../styles/dashboard.css"
 import { FaUserCircle } from "react-icons/fa";
 import { jwtDecode } from 'jwt-decode';
 import axios from "axios";
+import { FaSignOutAlt } from "react-icons/fa";
 
 export default function CardUser(){
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -101,8 +102,10 @@ export default function CardUser(){
                                 <p>{userSchool.name}</p>
                             </div>
                             <ul className="dropdown_list">
-                                <li><a href="/edit-profile">Edit user</a></li>
-                                <li onClick={handleLogout}>Logout</li>
+                                
+                                <button className="logout_button" onClick={handleLogout}>
+                                     <FaSignOutAlt className="logout_icon" /> Logout
+                                </button>
                             </ul>
                            
                         </div>

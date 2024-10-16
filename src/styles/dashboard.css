@@ -171,3 +171,24 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .theme_toggle button:hover {
   background-color: #555;
 }
+
+.logout_button {
+  background-color: transparent;
+  border: none;
+  color: red; /* Cor vermelha para o texto */
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.logout_button:hover {
+  color: darkred; /* Cor mais escura ao passar o mouse */
+}
+
+.logout_icon {
+  margin-right: 8px; /* Espaço entre o ícone e o texto */
+  font-size: 18px;
+}
