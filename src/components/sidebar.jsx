@@ -52,6 +52,8 @@ const Sidebar = () => {
           {!rolesBlocked.includes(userRole) && (
             <li><Link className='links_sidebar' to="/users_b2b_page">Administradores</Link></li>
           )}
+
+          <li><Link className='links_sidebar' to="/chat_aura">Aura</Link></li>
         </ul>
       </div>
 

@@ -67,7 +67,7 @@ const LoginForm = () => {
     return (
         <div className="login-form">
 
-            <div className="logo">
+            <div className="logo_login_form">
                 <img src={Logo} alt="AuraFocus Logo" />
             </div>
 

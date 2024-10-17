@@ -8,6 +8,7 @@ import Teachers from './pages/Teachers';
 import UsersB2BPage from './pages/users_b2b';
 import TokenExpiredModal from './components/modal_auth';
 import './styles/app.css';
+import ChatGPT from './pages/chatGPT';
 
 function App() {
   const [isTokenExpired, setIsTokenExpired] = useState(false);
@@ -51,6 +52,7 @@ function App() {
             <Route path='/teachers_page' element={<Teachers />} />
             <Route path='/parents_page' element={<Teachers />} />
             <Route path='/users_b2b_page' element={<UsersB2BPage />} />
+            <Route path='/chat_aura' element={<ChatGPT />} />
           </Routes>
         </div>
        

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './chat_gpt.css';
+import '../styles/chat_gpt.css';
 
+const localURL = 'http://localhost:3000'
 const ChatGPT = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([
@@ -15,7 +16,7 @@ const ChatGPT = () => {
     setChatHistory((prev) => [...prev, userMessage]); 
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/chat`, { message }); 
+      const response = await axios.post(`http://localhost:3000/aura/chat`, { message }); 
       const assistantMessage = { role: 'assistant', content: response.data.message };
       setChatHistory((prev) => [...prev, assistantMessage]); 
     } catch (error) {
