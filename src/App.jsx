@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import LoginPage from './pages/login_page';
 import Dashboard from './pages/dashboard';
 import StudentsPage from './pages/students';
 import Teachers from './pages/Teachers';
 import UsersB2BPage from './pages/users_b2b';
-import TokenExpiredModal from './components/modal_auth'; 
+import TokenExpiredModal from './components/modal_auth';
 import './styles/app.css';
 
 function App() {
   const [isTokenExpired, setIsTokenExpired] = useState(false);
- 
 
   useEffect(() => {
     const checkTokenExpiration = () => {
@@ -31,19 +30,14 @@ function App() {
       }
     };
 
-
     checkTokenExpiration();
-
-   
     const intervalId = setInterval(checkTokenExpiration, 60000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   const handleModalClose = () => {
-    setIsTokenExpired(false);
-    localStorage.removeItem('token'); 
-    navigate('/'); 
+    setIsTokenExpired(false);  // Atualiza o estado para fechar o modal
   };
 
   return (
@@ -59,11 +53,9 @@ function App() {
             <Route path='/users_b2b_page' element={<UsersB2BPage />} />
           </Routes>
         </div>
-        <TokenExpiredModal isOpen={isTokenExpired} />
+       
+        <TokenExpiredModal isOpen={isTokenExpired} onClose={handleModalClose} />
       </Router>
-
-      
-     
     </>
   );
 }

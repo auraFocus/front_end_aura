@@ -21,6 +21,7 @@
     position: relative;
     width: 300px;
     text-align: center;
+    height: 20%;
   }
   
   /* Botão de fechar (ícone X) */
@@ -54,3 +55,6 @@
     background-color: #45a049;
   }
   
+.close_icon_modal_auth{
+  color: red;
+}

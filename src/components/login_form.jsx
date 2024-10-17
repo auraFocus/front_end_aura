@@ -5,7 +5,7 @@ import Logo from '../../public/assets/logo.png'
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import Loader from "./loader";
-
+const localURL = "http://localhost:3000"
 
 
 const LoginForm = () => {
