@@ -75,7 +75,7 @@ export default function CardUser(){
 
     const handleLogout = () => {
         localStorage.removeItem("token");
-        window.location.href = "/login";
+        window.location.href = "/";
     };
 
 
