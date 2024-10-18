@@ -73,7 +73,7 @@ const LoginForm = () => {
 
 
 
-            <h2 className="label_input_login" >MUDANDO PARA TESTAR DEPLOY</h2>
+            <h2 className="label_input_login" >Login</h2>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
           { loading ? (<Loader/>) : ( 
