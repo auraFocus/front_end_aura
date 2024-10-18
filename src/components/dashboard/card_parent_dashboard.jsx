@@ -10,7 +10,7 @@ export default function CardParentsDashboard() {
 
     const fetchParents = async () => {
         console.log(localStorage.getItem("token"));
-        console.log("LOGANDO URL PAIS CARD", `${import.meta.env.VITE_API_URL}/aura/parents/all_parents`);
+        console.log("LOGANDO URL PAIS CARD", `${import.meta.env.VITE_API_URL}`);
 
         try {
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/aura/parents/all_parents`, {
