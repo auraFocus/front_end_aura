@@ -97,7 +97,7 @@ export default function CardUser(){
                     {isDropdownOpen && (
                         <div className="dropdown_menu">
                             <div className="dropdown_header">
-                                <FaUserCircle size={30} />
+                                <FaUserCircle size={30} style={{color:"white"}}/>
                                 <span>{userName}</span>
                                 <p>{userSchool.name}</p>
                             </div>
